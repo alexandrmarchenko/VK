@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VK</string>
+
+    <string name="news">Новости</string>
+    <string name="messages">Сообщения</string>
+    <string name="profile">Профиль</string>
+</resources>
