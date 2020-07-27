@@ -4,4 +4,15 @@
     <string name="news">Новости</string>
     <string name="messages">Сообщения</string>
     <string name="profile">Профиль</string>
+
+    <string name="user_name">Пользователь</string>
+    <string name="menu_friends">Друзья</string>
+    <string name="menu_groups">Группы</string>
+    <string name="menu_bookmarks">Закладки</string>
+    <string name="menu_liked">Понравилось</string>
+    <string name="menu_statistic">Статистика</string>
+    <string name="menu_help">Помощь</string>
+    <string name="menu_settings">Настройки</string>
+
+
 </resources>
