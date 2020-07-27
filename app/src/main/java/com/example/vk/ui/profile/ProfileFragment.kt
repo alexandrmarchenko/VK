@@ -1,7 +1,5 @@
 package com.example.vk.ui.profile
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -20,8 +18,6 @@ class ProfileFragment : Fragment() {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
-
-    var activity: Activity? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +38,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initDrawer() {
-        val toggle =
-            ActionBarDrawerToggle(activity, drawer_layout, R.string.app_name, R.string.app_name)
+        val toggle = ActionBarDrawerToggle(requireActivity(), drawer_layout, R.string.app_name, R.string.app_name)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
@@ -51,16 +46,6 @@ class ProfileFragment : Fragment() {
         profile_menu.setOnClickListener {
             drawer_layout.openDrawer(Gravity.RIGHT)
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        activity = context as Activity
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        activity = null
     }
 
     private val mOnNavigationItemSelectedListener =
