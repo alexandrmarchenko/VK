@@ -14,8 +14,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        initBottomNav()
+    }
 
+    private fun initBottomNav() {
+        nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         nav_view.selectedItemId = R.id.navigation_news
     }
 
