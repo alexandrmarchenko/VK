@@ -13,6 +13,9 @@
     <string name="menu_statistic">Статистика</string>
     <string name="menu_help">Помощь</string>
     <string name="menu_settings">Настройки</string>
+    <string name="status">Статус</string>
+    <string name="FIO">Фамилия Имя</string>
+    <string name="last_seen">был в сети</string>
 
 
 </resources>
