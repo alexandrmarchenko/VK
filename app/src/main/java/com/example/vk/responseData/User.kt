@@ -1,6 +1,6 @@
-package com.example.vk.ui.responseData
+package com.example.vk.responseData
 
-import com.example.vk.ui.responseData.user.UserDetail
+import com.example.vk.responseData.user.UserDetail
 import com.google.gson.annotations.SerializedName
 
 data class User(

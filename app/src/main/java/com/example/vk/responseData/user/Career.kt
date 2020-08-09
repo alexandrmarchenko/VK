@@ -1,4 +1,4 @@
-package com.example.vk.ui.responseData.user
+package com.example.vk.responseData.user
 
 import com.google.gson.annotations.SerializedName
 
