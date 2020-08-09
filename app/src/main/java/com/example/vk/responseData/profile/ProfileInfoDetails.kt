@@ -1,8 +1,8 @@
-package com.example.vk.ui.responseData.profile
+package com.example.vk.responseData.profile
 
-import com.example.vk.ui.responseData.user.City
-import com.example.vk.ui.responseData.user.Country
-import com.example.vk.ui.responseData.user.UserDetail
+import com.example.vk.responseData.user.City
+import com.example.vk.responseData.user.Country
+import com.example.vk.responseData.user.UserDetail
 import com.google.gson.annotations.SerializedName
 
 data class ProfileInfoDetails (
