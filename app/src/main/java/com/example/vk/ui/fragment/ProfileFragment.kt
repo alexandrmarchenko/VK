@@ -1,11 +1,13 @@
 package com.example.vk.ui.fragment
 
+import android.accounts.Account
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.fragment.app.FragmentTransaction
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.vk.R
@@ -22,12 +24,14 @@ import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 
-class ProfileFragment : MvpAppCompatFragment(), ProfileInfoView {
+class ProfileFragment(private val accessToken: String?) : MvpAppCompatFragment(),
+    ProfileInfoView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +46,7 @@ class ProfileFragment : MvpAppCompatFragment(), ProfileInfoView {
     @ProvidePresenter
     fun provideProfilePresenter(): ProfilePresenter {
 
-        val accessToken = arguments?.getString("access_token", null)
+        val accessToken = arguments?.getString(ARG_PARAM1, null)
         return ProfilePresenter(accessToken)
     }
 
@@ -63,14 +67,15 @@ class ProfileFragment : MvpAppCompatFragment(), ProfileInfoView {
     }
 
     private fun getAccessToken(): String? {
-        return arguments?.getString("access_token", null)
+        return arguments?.getString(ARG_PARAM1, null)
     }
 
     companion object {
+        private val ARG_PARAM1 = "access_token";
         fun newInstance(accessToken: String?): ProfileFragment {
-            val fragment = ProfileFragment()
+            val fragment = ProfileFragment(accessToken)
             val args = Bundle()
-            args.putString("access_token", accessToken)
+            args.putString(ARG_PARAM1, accessToken)
             fragment.arguments = args
             return fragment
         }
@@ -103,7 +108,10 @@ class ProfileFragment : MvpAppCompatFragment(), ProfileInfoView {
         NavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_friends -> {
-                    Snackbar.make(nav_view, item.title, Snackbar.LENGTH_SHORT).show()
+//                    Snackbar.make(nav_view, item.title, Snackbar.LENGTH_SHORT).show()
+
+                    mPresenter.openFriendsFragment()
+
                     true
                 }
                 R.id.nav_groups -> {
@@ -137,7 +145,7 @@ class ProfileFragment : MvpAppCompatFragment(), ProfileInfoView {
         }
 
     override fun setProfileInfo(profileInfo: ProfileInfoDetails) {
-        user_id.text = "id${profileInfo.id}"
+
         profileFIO.text = "${profileInfo.firstName} ${profileInfo.lastName}"
 
         var status = profileInfo.status
@@ -148,12 +156,24 @@ class ProfileFragment : MvpAppCompatFragment(), ProfileInfoView {
     }
 
     override fun setUserInfo(userDetail: UserDetail) {
+        user_id.text = userDetail.screenName
         profileLastSeen.text =
             getString(R.string.last_seen, userDetail.lastSeen?.time.toString())
         userDetail.photo_100?.let { url ->
             profileImage.load(url) {
                 transformations(CircleCropTransformation())
             }
+        }
+    }
+
+    override fun openFriendsFragment(userId: Int) {
+        accessToken?.let {
+            val friendsFragment =
+                FriendsFragment.newInstance(accessToken, userId)
+            var ft = fragmentManager?.beginTransaction()
+            ft?.replace(R.id.container, friendsFragment)
+            ft?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            ft?.commit()
         }
     }
 

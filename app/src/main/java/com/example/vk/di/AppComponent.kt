@@ -3,6 +3,7 @@ package com.example.vk.di
 import com.example.vk.di.module.ApiModule
 import com.example.vk.di.module.AppModule
 import com.example.vk.di.module.RepoModule
+import com.example.vk.mvp.presenter.FriendsPresenter
 import com.example.vk.mvp.presenter.ProfilePresenter
 import dagger.Component
 import javax.inject.Singleton
@@ -17,4 +18,5 @@ import javax.inject.Singleton
 )
 interface AppComponent {
     fun inject(profilePresenter: ProfilePresenter)
+    fun inject(friendsPresenter: FriendsPresenter)
 }

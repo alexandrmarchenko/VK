@@ -8,6 +8,7 @@ import com.example.vk.di.module.AppModule
 class VKApplication : Application() {
 
     companion object {
+        val DEBUG = true
         lateinit var INSTANCE: VKApplication
     }
 
@@ -19,8 +20,6 @@ class VKApplication : Application() {
 
         appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build();
     }
-
-    fun getAppContext() = INSTANCE
 
     fun getAppComponent() = appComponent
 

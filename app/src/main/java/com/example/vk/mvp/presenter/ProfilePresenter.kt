@@ -12,9 +12,7 @@ import moxy.MvpPresenter
 import javax.inject.Inject
 
 class ProfilePresenter(private val accessToken: String?) : MvpPresenter<ProfileInfoView>() {
-    companion object {
-        private val TAG: String = ProfilePresenter::class.java.simpleName
-    }
+    private val TAG: String = ProfilePresenter::class.java.simpleName
 
     init {
         VKApplication.INSTANCE.getAppComponent().inject(this)
@@ -46,10 +44,7 @@ class ProfilePresenter(private val accessToken: String?) : MvpPresenter<ProfileI
                     }
                 },
                     { e ->
-                        Log.w(
-                            TAG,
-                            "Error" + e.message
-                        )
+                        Log.w(TAG, "Error" + e.message)
                     })
         }
     }
@@ -71,6 +66,12 @@ class ProfilePresenter(private val accessToken: String?) : MvpPresenter<ProfileI
                     }
 
                 }
+        }
+    }
+
+    fun openFriendsFragment() {
+        profileInfo?.response?.userInfo?.id?.let {
+            viewState.openFriendsFragment(it)
         }
     }
 

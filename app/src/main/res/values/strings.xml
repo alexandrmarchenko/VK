@@ -17,6 +17,7 @@
     <string name="FIO">Фамилия Имя</string>
     <string name="last_seen">Был в сети %1$s</string>
     <string name="default_status_text">Расскажите о себе</string>
+    <string name="City">City</string>
 
 
 </resources>
