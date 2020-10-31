@@ -2,8 +2,6 @@ package com.example.vk.di.module
 
 import androidx.room.Room
 import com.example.vk.VKApplication
-import com.example.vk.mvp.model.cache.IProfileCache
-import com.example.vk.mvp.model.cache.room.RoomProfileCache
 import com.example.vk.mvp.model.entity.room.Database
 import dagger.Module
 import dagger.Provides
@@ -19,9 +17,4 @@ class CacheModule {
             .build();
     }
 
-    @Singleton
-    @Provides
-    fun getProfileCache(db: Database): IProfileCache {
-        return RoomProfileCache(db)
-    }
 }

@@ -7,4 +7,5 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface FriendsView: MvpView {
     fun init()
     fun updateList()
+    fun release()
 }

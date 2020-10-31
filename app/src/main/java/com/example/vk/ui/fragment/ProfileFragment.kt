@@ -1,16 +1,15 @@
 package com.example.vk.ui.fragment
 
-import android.accounts.Account
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.fragment.app.FragmentTransaction
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.vk.R
+import com.example.vk.VKApplication
 import com.example.vk.mvp.model.entity.profileInfo.ProfileInfoDetails
 import com.example.vk.mvp.model.entity.user.UserDetail
 import com.example.vk.mvp.presenter.ProfilePresenter
@@ -153,6 +152,10 @@ class ProfileFragment() : MvpAppCompatFragment(),
                 transformations(CircleCropTransformation())
             }
         }
+    }
+
+    override fun release() {
+        VKApplication.INSTANCE.releaseUserSubcomponent()
     }
 
 }

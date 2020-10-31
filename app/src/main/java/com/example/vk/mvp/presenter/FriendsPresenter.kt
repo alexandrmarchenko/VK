@@ -21,7 +21,8 @@ class FriendsPresenter(private val userId: Int) : MvpPresenter<FriendsView>() {
     private val VERBOSE = true
 
     init {
-        VKApplication.INSTANCE.getAppComponent().inject(this)
+        VKApplication.INSTANCE.initFriendSubcomponent()
+        VKApplication.INSTANCE.friendSubcomponent?.inject(this)
     }
 
     @Inject
@@ -86,5 +87,10 @@ class FriendsPresenter(private val userId: Int) : MvpPresenter<FriendsView>() {
 
     fun backPressed() {
         router.backTo(Screens.Companion.ProfileFragmentScreen())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewState.release()
     }
 }

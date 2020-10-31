@@ -20,7 +20,8 @@ class ProfilePresenter() : MvpPresenter<ProfileInfoView>() {
     private val TAG: String = ProfilePresenter::class.java.simpleName
 
     init {
-        VKApplication.INSTANCE.getAppComponent().inject(this)
+        VKApplication.INSTANCE.initUserSubcomponent()
+        VKApplication.INSTANCE.userSubcomponent?.inject(this)
     }
 
     @Inject
@@ -101,6 +102,11 @@ class ProfilePresenter() : MvpPresenter<ProfileInfoView>() {
         userInfo?.id?.let {
             router.navigateTo(Screens.Companion.FriendsFragmentScreen(it))
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewState.release()
     }
 
 }

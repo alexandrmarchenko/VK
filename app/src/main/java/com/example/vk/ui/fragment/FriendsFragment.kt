@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vk.R
-import com.example.vk.mvp.model.entity.user.UserDetail
+import com.example.vk.VKApplication
 import com.example.vk.mvp.presenter.FriendsPresenter
 import com.example.vk.mvp.view.FriendsView
 import com.example.vk.ui.BackButtonListener
@@ -16,7 +16,7 @@ import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 
-class FriendsFragment(private val userId: Int) : MvpAppCompatFragment(), FriendsView, BackButtonListener {
+class FriendsFragment() : MvpAppCompatFragment(), FriendsView, BackButtonListener {
 
     private lateinit var friendRVAdapter: FriendRVAdapter
 
@@ -25,7 +25,7 @@ class FriendsFragment(private val userId: Int) : MvpAppCompatFragment(), Friends
 
     @ProvidePresenter
     fun provideFriendsPresenter(): FriendsPresenter {
-        val userId = arguments?.getInt(FriendsFragment.ARG_PARAM1, 0) ?: 0
+        val userId = arguments?.getInt(FriendsFragment.ARG_PARAM1, 0)!!
         return FriendsPresenter(userId)
     }
 
@@ -48,10 +48,14 @@ class FriendsFragment(private val userId: Int) : MvpAppCompatFragment(), Friends
         friendRVAdapter.notifyDataSetChanged()
     }
 
+    override fun release() {
+        VKApplication.INSTANCE.releaseFriendSubcomponent()
+    }
+
     companion object {
         private val ARG_PARAM1 = "user_id";
         fun newInstance(userId: Int): FriendsFragment {
-            val fragment = FriendsFragment(userId)
+            val fragment = FriendsFragment()
             val args = Bundle()
             args.putInt(ARG_PARAM1, userId)
             fragment.arguments = args

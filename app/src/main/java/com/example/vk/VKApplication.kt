@@ -3,7 +3,9 @@ package com.example.vk
 import android.app.Application
 import com.example.vk.di.AppComponent
 import com.example.vk.di.DaggerAppComponent
+import com.example.vk.di.friend.FriendSubcomponent
 import com.example.vk.di.module.AppModule
+import com.example.vk.di.user.UserSubcomponent
 
 class VKApplication : Application() {
 
@@ -16,6 +18,9 @@ class VKApplication : Application() {
 
     private lateinit var appComponent: AppComponent
 
+    var userSubcomponent: UserSubcomponent? = null
+    var friendSubcomponent: FriendSubcomponent? = null
+
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
@@ -24,6 +29,22 @@ class VKApplication : Application() {
     }
 
     fun getAppComponent() = appComponent
+
+    fun initUserSubcomponent() = appComponent.userSubcomponent().also {
+        userSubcomponent = it
+    }
+
+    fun releaseUserSubcomponent() {
+        userSubcomponent = null
+    }
+
+    fun initFriendSubcomponent() = userSubcomponent?.friendSubcomponent().also {
+        friendSubcomponent = it
+    }
+
+    fun releaseFriendSubcomponent() {
+        friendSubcomponent = null
+    }
 
 
 }
