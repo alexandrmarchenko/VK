@@ -1,13 +1,13 @@
 package com.example.vk.mvp.model.repo
 
-import com.example.vk.mvp.model.entity.user.Friends
+import com.example.vk.mvp.model.entity.user.User
 import io.reactivex.rxjava3.core.Single
 
-interface IFriendsRepo {
-    fun getFriends(
+interface IUsersRepo {
+    fun getUsers(
         accessToken: String,
-        userId: Int,
         apiVer: Double,
+        usersIds: String?,
         fields: String
-    ): Single<Friends>
+    ): Single<User>
 }

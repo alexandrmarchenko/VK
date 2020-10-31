@@ -1,4 +1,4 @@
-package com.example.vk.ui.auth
+package com.example.vk.mvp.model.auth
 
 import android.content.Context
 import android.preference.PreferenceManager

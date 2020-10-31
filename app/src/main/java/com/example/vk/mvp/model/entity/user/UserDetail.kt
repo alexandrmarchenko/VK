@@ -3,7 +3,7 @@ package com.example.vk.mvp.model.entity.user
 import com.example.vk.mvp.model.entity.photo.CropPhoto
 import com.google.gson.annotations.SerializedName
 
-data class UserDetail(
+class UserDetail(
     @SerializedName("id") val id: Int,
     @SerializedName("first_name") val firstName: String,
     @SerializedName("last_name") val lastName: String,

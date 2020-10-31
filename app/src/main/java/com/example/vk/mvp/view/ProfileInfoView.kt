@@ -9,5 +9,4 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface ProfileInfoView : MvpView {
     fun setProfileInfo(profileInfoDetails: ProfileInfoDetails)
     fun setUserInfo(userDetail: UserDetail)
-    fun openFriendsFragment(userId: Int)
 }

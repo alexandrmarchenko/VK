@@ -18,7 +18,7 @@ interface IDataSource {
     fun getUsers(
         @Query("access_token") accessToken: String,
         @Query("v") v: Double,
-        @Query("users_ids") users_ids: String,
+        @Query("users_ids") users_ids: String?,
         @Query("fields") fields: String
     ): Single<User>
 

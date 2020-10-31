@@ -24,7 +24,7 @@ import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 
-class ProfileFragment(private val accessToken: String?) : MvpAppCompatFragment(),
+class ProfileFragment() : MvpAppCompatFragment(),
     ProfileInfoView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,9 +45,7 @@ class ProfileFragment(private val accessToken: String?) : MvpAppCompatFragment()
 
     @ProvidePresenter
     fun provideProfilePresenter(): ProfilePresenter {
-
-        val accessToken = arguments?.getString(ARG_PARAM1, null)
-        return ProfilePresenter(accessToken)
+        return ProfilePresenter()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -66,16 +64,10 @@ class ProfileFragment(private val accessToken: String?) : MvpAppCompatFragment()
         }
     }
 
-    private fun getAccessToken(): String? {
-        return arguments?.getString(ARG_PARAM1, null)
-    }
-
     companion object {
-        private val ARG_PARAM1 = "access_token";
-        fun newInstance(accessToken: String?): ProfileFragment {
-            val fragment = ProfileFragment(accessToken)
+        fun newInstance(): ProfileFragment {
+            val fragment = ProfileFragment()
             val args = Bundle()
-            args.putString(ARG_PARAM1, accessToken)
             fragment.arguments = args
             return fragment
         }
@@ -108,10 +100,7 @@ class ProfileFragment(private val accessToken: String?) : MvpAppCompatFragment()
         NavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_friends -> {
-//                    Snackbar.make(nav_view, item.title, Snackbar.LENGTH_SHORT).show()
-
                     mPresenter.openFriendsFragment()
-
                     true
                 }
                 R.id.nav_groups -> {
@@ -163,17 +152,6 @@ class ProfileFragment(private val accessToken: String?) : MvpAppCompatFragment()
             profileImage.load(url) {
                 transformations(CircleCropTransformation())
             }
-        }
-    }
-
-    override fun openFriendsFragment(userId: Int) {
-        accessToken?.let {
-            val friendsFragment =
-                FriendsFragment.newInstance(accessToken, userId)
-            var ft = fragmentManager?.beginTransaction()
-            ft?.replace(R.id.container, friendsFragment)
-            ft?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            ft?.commit()
         }
     }
 

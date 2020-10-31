@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    android:layout_margin="10dp">
 
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/item_friend_avatar_width"
+        android:layout_height="@dimen/item_friend_avatar_height"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/avatar"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/fio"
+        style="@style/item_friend_fio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/item_friend_fio_margin_left"
+        android:layout_marginTop="@dimen/item_friend_fio_margin_top"
         app:layout_constraintLeft_toRightOf="@+id/avatar"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/fio"
-        tools:text="@string/FIO"
-        android:textSize="7pt"
-        android:textColor="@color/black_overlay"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="10dp"/>
+        tools:text="@string/FIO" />
 
     <TextView
+        android:id="@+id/city"
+        style="@style/item_friend_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/item_friend_city_margin_left"
+        android:layout_marginTop="@dimen/item_friend_city_margin_top"
         app:layout_constraintLeft_toRightOf="@+id/avatar"
         app:layout_constraintTop_toBottomOf="@+id/fio"
-        android:id="@+id/city"
-        tools:text="@string/City"
-        android:textSize="6pt"
-        android:layout_marginTop="1dp"
-        android:layout_marginLeft="10dp"/>
+        tools:text="@string/City" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

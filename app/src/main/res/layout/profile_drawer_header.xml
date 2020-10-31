@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/user_name"
+        style="@style/drawer_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/user_name"
-        style="@style/drawer_header"/>
+        android:text="@string/user_name" />
 
     <View
         android:id="@+id/divider"

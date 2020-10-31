@@ -9,15 +9,16 @@ import com.example.vk.R
 import com.example.vk.mvp.model.entity.user.UserDetail
 import com.example.vk.mvp.presenter.FriendsPresenter
 import com.example.vk.mvp.view.FriendsView
+import com.example.vk.ui.BackButtonListener
 import com.example.vk.ui.adapter.FriendRVAdapter
 import kotlinx.android.synthetic.main.fragment_friends.*
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 
-class FriendsFragment(private val userId: Int) : MvpAppCompatFragment(), FriendsView {
+class FriendsFragment(private val userId: Int) : MvpAppCompatFragment(), FriendsView, BackButtonListener {
 
-    lateinit var friendRVAdapter: FriendRVAdapter
+    private lateinit var friendRVAdapter: FriendRVAdapter
 
     @InjectPresenter
     lateinit var presenter: FriendsPresenter
@@ -25,8 +26,7 @@ class FriendsFragment(private val userId: Int) : MvpAppCompatFragment(), Friends
     @ProvidePresenter
     fun provideFriendsPresenter(): FriendsPresenter {
         val userId = arguments?.getInt(FriendsFragment.ARG_PARAM1, 0) ?: 0
-        val accessToken = arguments?.getString(FriendsFragment.ARG_ACCESS_TOKEN, null)
-        return FriendsPresenter(accessToken, userId)
+        return FriendsPresenter(userId)
     }
 
     override fun onCreateView(
@@ -50,15 +50,18 @@ class FriendsFragment(private val userId: Int) : MvpAppCompatFragment(), Friends
 
     companion object {
         private val ARG_PARAM1 = "user_id";
-        private val ARG_ACCESS_TOKEN = "access_token";
-        fun newInstance(accessToken: String, userId: Int): FriendsFragment {
+        fun newInstance(userId: Int): FriendsFragment {
             val fragment = FriendsFragment(userId)
             val args = Bundle()
             args.putInt(ARG_PARAM1, userId)
-            args.putString(ARG_ACCESS_TOKEN, accessToken)
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun backPressed(): Boolean {
+        presenter.backPressed()
+        return true
     }
 
 

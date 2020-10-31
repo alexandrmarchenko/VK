@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.vk.R
-import com.example.vk.mvp.model.entity.user.Friend
+import com.example.vk.mvp.model.entity.user.UserDetail
 import com.example.vk.mvp.presenter.list.IFriendListPresenter
 import com.example.vk.mvp.view.IFriendItemView
 import kotlinx.android.synthetic.main.item_friend.view.*
@@ -19,7 +19,7 @@ class FriendRVAdapter(private val presenter: IFriendListPresenter): RecyclerView
 
 //        var position: Int = 0
 
-        override fun init(friend: Friend) {
+        override fun init(friend: UserDetail) {
             itemView.fio.text = "${friend.lastName} ${friend.firstName}"
             itemView.city.text = friend?.city?.title
 

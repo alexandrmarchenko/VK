@@ -18,6 +18,7 @@
     <string name="last_seen">Был в сети %1$s</string>
     <string name="default_status_text">Расскажите о себе</string>
     <string name="City">City</string>
-
+    <string name="oauth_url">https://oauth.vk.com/authorize?client_id=%1$s&amp;display=mobile&amp;scope=%2$s&amp;redirect_uri=%3$s&amp;response_type=token&amp;v=%4$s</string>
+    <string name="auth_settings">friends,notify,photos,audio,video,docs,notes,pages,groups,offline</string>
 
 </resources>

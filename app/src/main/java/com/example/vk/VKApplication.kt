@@ -10,6 +10,8 @@ class VKApplication : Application() {
     companion object {
         val DEBUG = true
         lateinit var INSTANCE: VKApplication
+
+        fun getAppContext() = INSTANCE
     }
 
     private lateinit var appComponent: AppComponent

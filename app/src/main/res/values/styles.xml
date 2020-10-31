@@ -26,7 +26,7 @@
 
     <style name="drawer_header">
         <item name="android:textColor">@color/black_overlay</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/drawer_header_text_size</item>
         <item name="android:padding">3dp</item>
     </style>
 
@@ -35,5 +35,22 @@
         <item name="android:textSize">@dimen/profile_status_text_size</item>
     </style>
 
+    <style name="profile_fio">
+        <item name="android:textSize">@dimen/profile_fio_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="profile_last_seen">
+        <item name="android:textSize">@dimen/profile_last_seen_text_size</item>
+    </style>
+
+    <style name="item_friend_fio">
+        <item name="android:textColor">@color/black_overlay</item>
+        <item name="android:textSize">@dimen/item_friend_fio_text_size</item>
+    </style>
+
+    <style name="item_friend_city">
+        <item name="android:textSize">@dimen/item_friend_city_text_size</item>
+    </style>
 
 </resources>
