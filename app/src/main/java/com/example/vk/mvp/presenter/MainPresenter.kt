@@ -17,15 +17,15 @@ class MainPresenter: MvpPresenter<MainView>() {
     }
 
     fun openNewsFragment() {
-        router.navigateTo(Screens.Companion.NewsFragmentScreen())
+        router.replaceScreen(Screens.Companion.NewsFragmentScreen())
     }
 
     fun openMessagesFragment() {
-        router.navigateTo(Screens.Companion.MessagesFragmentScreen())
+        router.replaceScreen(Screens.Companion.MessagesFragmentScreen())
     }
 
     fun openProfileFragment(accessToken: String) {
-        router.navigateTo(Screens.Companion.ProfileFragmentScreen())
+        router.replaceScreen(Screens.Companion.ProfileFragmentScreen())
     }
 
     fun backClicked() {
